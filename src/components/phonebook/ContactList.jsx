@@ -1,6 +1,7 @@
 
 import ContactElement from "./ContactElements";
 import style from '../phonebook/phonebook.module.css'
+import PropTypes from 'prop-types';
 
 
 const ContactList = ({Contacts, filterValue, onDelete}) => {
@@ -27,10 +28,18 @@ const ContactList = ({Contacts, filterValue, onDelete}) => {
      </div> 
                  )
             
-        
-
-
+    
         
 }
+
+
+ContactList.propTypes = {
+Contacts: PropTypes.array,
+filterValue: PropTypes.string,
+onDelete: PropTypes.func
+
+}
+
+
 
 export default ContactList;
