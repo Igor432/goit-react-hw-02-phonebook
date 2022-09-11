@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 
 const ContactElement = ({contact, onDelete}) =>  {
+
+  
  
         return (
            
@@ -15,8 +17,11 @@ const ContactElement = ({contact, onDelete}) =>  {
 
 
 ContactElement.propTypes = {
-    contact: PropTypes.object,
-    onDelete: PropTypes.func
+    contact: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired
+    }).isRequired,
+    onDelete: PropTypes.func.isRequired
 }
 
 
