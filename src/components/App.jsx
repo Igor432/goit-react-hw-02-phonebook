@@ -19,25 +19,16 @@ class App extends Component {
     const value = name.value;
     const numberVal = e.target.number.value;
     const { contacts } = this.state;
-    const allName = [];
 
-    contacts.forEach(contact => {
-      allName.push(contact.name);
-    });
-
-    if (allName.includes(value)) {
+    const result = this.state.contacts.find(element => element.name === name);
+    if (result) {
       Notiflix.Notify.failure('The name already exists!');
-    } else {
-      this.setState(
-        {
-          contacts: [
-            ...contacts,
-            { id: nanoid(), name: value, number: numberVal },
-          ],
-        },
-        e.target.reset()
-      );
     }
+
+    this.setState({
+      contacts: [...contacts, { id: nanoid(), name: value, number: numberVal }],
+    });
+    e.target.reset();
   };
 
   onFilter = e => {
@@ -48,32 +39,22 @@ class App extends Component {
   };
 
   onDelete = e => {
-    const { contacts } = this.state;
     const target = e.target;
-    const newContacts = contacts.filter(contact => contact.id !== target.id);
-    this.setState({ contacts: newContacts });
+    this.setState(prev => ({...prev, contacts: prev.contacts.filter(contact => contact.id !== target.id)}))
+  
   };
 
   render() {
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
+      <div className={style.main}>
         <h1 className={style.title_tag}>Phonebook</h1>
         <ContactForm onSubmit={this.onSubmit} />
 
         <h2 className={style.title_tag}>Contacts</h2>
 
-        <Filter onFilter={this.onFilter} contacts={this.state.contacts} />
+        <Filter onFilter={this.onFilter}  />
         <ContactList
-          Contacts={this.state.contacts}
+          contacts={this.state.contacts}
           filterValue={this.state.filter}
           onDelete={this.onDelete}
         />

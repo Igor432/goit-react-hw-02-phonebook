@@ -2,20 +2,31 @@ import ContactElement from './ContactElements';
 import style from '../phonebook/phonebook.module.css';
 import PropTypes from 'prop-types';
 
-const ContactList = ({ Contacts, filterValue, onDelete }) => {
-  let filteredContact = Contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filterValue.toLowerCase())
-  );
+const ContactList = ({ contacts, filterValue, onDelete }) => {
+
+
+const filteredContact = () => { 
+
+  contacts = contacts.filter(contact => contact.name.toLowerCase().includes(filterValue.toLowerCase()))
+
+
+
+}
+
+console.log(filteredContact())
 
   return (
     <div className={style.contacts}>
+   
       <ul className={style.contacts_list}>
-        {filteredContact.map(filcontact => (
+        
+        {contacts.map(filcontact => (
           <ContactElement
             key={filcontact.id}
             contact={filcontact}
             onDelete={onDelete}
           />
+          
         ))}
       </ul>
     </div>
