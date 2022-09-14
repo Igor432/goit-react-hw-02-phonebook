@@ -18,16 +18,15 @@ class App extends Component {
     const name = target.name;
     const value = name.value;
     const numberVal = e.target.number.value;
-    const { contacts } = this.state;
 
-    const result = this.state.contacts.find(element => element.name === name);
+    const result = this.state.contacts.find(element => element.name === value);
     if (result) {
-      Notiflix.Notify.failure('The name already exists!');
+    return  Notiflix.Notify.failure('The name already exists!');
     }
 
-    this.setState({
-      contacts: [...contacts, { id: nanoid(), name: value, number: numberVal }],
-    });
+    this.setState(prev => ({...prev,
+      contacts: [...prev.contacts, { id: nanoid(), name: value, number: numberVal }],
+    }));
     e.target.reset();
   };
 
