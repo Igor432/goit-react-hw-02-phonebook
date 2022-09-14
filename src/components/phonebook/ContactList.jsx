@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, filterValue, onDelete }) => {
   const filteredContact = () => {
-    contacts = contacts.filter(contact =>
+  return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filterValue.toLowerCase())
     );
   };
@@ -14,7 +14,7 @@ const ContactList = ({ contacts, filterValue, onDelete }) => {
   return (
     <div className={style.contacts}>
       <ul className={style.contacts_list}>
-        {contacts.map(filcontact => (
+        {filteredContact().map(filcontact => (
           <ContactElement
             key={filcontact.id}
             contact={filcontact}
