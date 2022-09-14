@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Filter = ({ onFilter }) => {
   return (
     <div className={style.filter}>
-         <h3>Find:</h3>
+      <h3>Find:</h3>
       <input
         type="filter"
         name="filter"
